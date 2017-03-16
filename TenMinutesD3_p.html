@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://d3js.org/d3.v3.js"></script>
+<meta charset="utf-8">
+<meta name="Viewport" content="width=device-width">
+<title>JS Bin</title>
+</head>
+<body>
+<script type="text/javascript">
+var data = [1,2,3];
+
+var outerWidth=500;
+var outerHeight = 450;
+var svg = d3.select("body").append("svg")
+.attr("width", outerWidth)
+.attr("height", outerHeight)
+
+svg.selectAll("circle")
+	.data(data)
+	.enter().append("circle")
+	.attr("cx", function (d) {return d*100;} )
+	.attr("cy",100)
+	.attr("r",function (d) {return d*20;})
+	.attr("fill","red")
+svg.selectAll("circle").transition().style("r",function (d) {return (4-d)*20;}).duration(1000).transition().style("fill","black").duration(1000)
+
+
+var text = d3.select("body").append("p")
+
+text.selectAll("p")
+.data(data)
+.enter().append("p").text(function (d) {return d +". Zahl: " + d*100;})
+
+text.selectAll("p").transition().style("font-size","36px").duration(1000).transition().style("color","red").duration(1000)
+
+
+
+</script>
+</body>
+</html>
+	
